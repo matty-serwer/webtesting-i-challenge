@@ -6,7 +6,9 @@ module.exports = {
 };
 
 function success(item) {
-  return { ...item };
+  return item.enhancement === 20
+    ? { ...item}
+    : { ...item, enhancement: item.enhancemen++ }
 }
 
 function fail(item) {
@@ -14,7 +16,7 @@ function fail(item) {
 }
 
 function repair(item) {
-  return { ...item };
+  return { ...item, durability: 100 };
 }
 
 function get(item) {
