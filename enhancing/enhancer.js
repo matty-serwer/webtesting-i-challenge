@@ -29,5 +29,14 @@ function repair(item) {
 }
 
 function get(item) {
-  return { ...item };
+  if(item.name.charAt(0) === '[') {
+    item.name = item.name.slice((item.name.indexOf(']')) + 2)
+  }
+
+  if (item.enhancement === 0) {
+    return { ...item };
+  } else {
+    return { ...item, name: `[+${item.enhancement}] ${item.name}`};
+  }
+  
 }

@@ -72,5 +72,24 @@ describe('Item enhancer functions', () => {
     expect(enhancer.get).toBeDefined()
     expect(enhancer.get).toBeInstanceOf(Function)
   })
+  it('enchancer.get leaves name alone if enhancement is 0', () => {
+    bat1.enhancement = 0
+    bat1 = enhancer.get(bat1)
+    expect(bat1.name).toBe('Rickenbacker 4001')
+  })
+  it('enahancer.get adds prefix to item.name', () => {
+    bat1 = enhancer.get(bat1)
+    expect(bat1.name).toBe('[+18] Rickenbacker 4001')
+  })
+  it('enhancer.get updates prefix on item.name', () => {
+    bat1 = enhancer.get(bat1)
+    expect(bat1.name).toBe('[+18] Rickenbacker 4001')
+    bat1.enhancement = 14;
+    bat1 = enhancer.get(bat1)
+    expect(bat1.name).toBe('[+14] Rickenbacker 4001')
+    bat1.enhancement = 8;
+    bat1 = enhancer.get(bat1)
+    expect(bat1.name).toBe('[+8] Rickenbacker 4001')
+  })
 
 })
