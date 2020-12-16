@@ -54,6 +54,20 @@ describe('Item enhancer functions', () => {
     bat1 = enhancer.fail(bat1)
     expect(bat1.durability).toBe(75)
   })
+  it('enhancer.fail decreaces durability by 10 when enhancement 15 or more', () => {
+    bat1 = enhancer.fail(bat1)
+    expect(bat1.durability).toBe(70)
+  })
+  it('enhancer.fail decreases enhancement by 1 when enhancement is 16 or more', () => {
+    bat1 = enhancer.fail(bat1)
+    expect(bat1.enhancement).toBe(17)
+    bat1 = enhancer.fail(bat1)
+    expect(bat1.enhancement).toBe(16)
+    bat1 = enhancer.fail(bat1)
+    expect(bat1.enhancement).toBe(15)
+    bat1 = enhancer.fail(bat1)
+    expect(bat1.enhancement).toBe(15)
+  })
   it('enhancer.get is a function', () => {
     expect(enhancer.get).toBeDefined()
     expect(enhancer.get).toBeInstanceOf(Function)
